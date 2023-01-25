@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        ShowmeZhuyin
+    </title>
+</head>
+
+<body>
+
+<header class="fixed-header">
+<div class="container">
+    <h1>ShowmeZhuyin</h1>
+    <form name="myform">
+        <p><label for="mytextarea">Please paste your text here:</label></p>
+        <textarea id="mytextarea" name="input" rows="4" cols="90" placeholder="Enter text..." style="width: 100%;"></textarea>
+        <br>
+        <div style="text-align: right;"><input type="submit" value="Submit" onclick="return submitAction()"></div>
+    </form>
+</div>
+</header>
+
+<div class="container" id="submittedText">
+
+</div>
+
+<footer class="fixed-footer">
+<div class="container">
+    <p id="selectedText"></p>
+    <input type="submit" value="Show me" onclick="return showZhuyin()" style="float: right;" >
+</div>
+</footer>
+
+</body>
+
+<style>
+    body{        
+        padding-top: 0px;
+        padding-bottom: 100px;
+        box-sizing: border-box;
+        padding: 0px;
+        margin: 0px;
+    }
+    .fixed-header, .fixed-footer{
+        width: 100%;       
+        background: #333;
+        padding: 10px 0;
+        color: #fff;
+    }
+    .fixed-header{
+        top: 0;
+        position: sticky;
+    }
+    .fixed-footer{
+        bottom: 0;
+        position: fixed; 
+    }
+    .container{
+        width: 80%;
+        margin: 0 auto; /* Center the DIV horizontally */
+    }
+
+    @font-face {
+        font-family: StdKaiZuinn;
+        src: url(StdKaiZuinnEG-Md-01.ttf);
+    }
+
+    #submittedText{
+        font-size: 20px;
+        inline-size: 80%;
+        overflow-wrap: break-word;
+    }
+
+    #selectedText{
+        font-family: StdKaiZuinn;
+        font-size: 30px;
+    }
+
+</style>
+
+<script>
+    function submitAction() {
+        text = document.getElementById("mytextarea").value;
+        document.getElementById("submittedText").innerText = text;
+        document.getElementById("mytextarea").value = "";
+        return false;
+    }
+
+    function showZhuyin() {
+        text = window.getSelection().toString();
+        document.getElementById("selectedText").innerText = text;
+        return false;
+    }
+</script>
+
+</html>
